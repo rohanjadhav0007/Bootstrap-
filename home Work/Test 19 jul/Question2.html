@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: 100vh;
+    }
+    .product-card {
+      width: 400px;
+      background: #fff;
+      border: 2px solid #007bff;
+      border-radius: 8px;
+      padding: 15px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .product-card img {
+      width: 100%;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+    .title {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    .price {
+      color: #e63946;
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+    .description {
+      display: none;
+      text-align: left;
+      margin-top: 10px;
+      font-size: 15px;
+      color: #333;
+      line-height: 1.5;
+    }
+    .sold-out {
+      background: #ffc107;
+      padding: 5px;
+      display: inline-block;
+      margin-top: 5px;
+      font-weight: bold;
+      border-radius: 4px;
+    }
+    button {
+      margin-top: 10px;
+      padding: 8px 15px;
+      background: #0472e7;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="product-card">
+    <img src="img.jpg" alt="iQOO 13">
+    <div class="title">iQOO 13 5G (Legend, 16GB RAM, 512GB)</div>
+    <div class="price">₹59,999</div>
+    
+    <div class="description">
+      <p>12 GB RAM | 256 GB ROM</p>
+      <p>17.32 cm (6.82 inch) Display</p>
+      <p>50MP Rear Camera</p>
+      <p>6000 mAh Battery</p>
+      <span class="sold-out">Sold Out</span><br>
+      <small>This item is currently out of stock.</small>
+    </div>
+
+    <button id="toggle-btn">Show More</button>
+  </div>
+
+  <script>
+    $(document).ready(function(){
+      $("#toggle-btn").click(function(){
+        $(".description").slideToggle(); 
+        $(this).text($(this).text() === "Show More" ? "Hide" : "Show More");
+      });
+    });
+  </script>
+
+</body>
+</html>

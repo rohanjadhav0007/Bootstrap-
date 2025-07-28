@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student List App</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f3f3f3;
+            padding: 20px;
+        }
+        .container {
+            width: 400px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        input[type="text"] {
+            padding: 8px;
+            margin: 5px 0;
+            width: calc(100% - 18px);
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 8px 12px;
+            margin-top: 5px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #45a049;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 15px;
+        }
+        li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px;
+            margin-bottom: 5px;
+            background: #f9f9f9;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+        .delete-btn {
+            background: red;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 5px 8px;
+            cursor: pointer;
+        }
+        .delete-btn:hover {
+            background: darkred;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Student List</h2>
+    
+        <input type="text" id="search" placeholder="Search student...">
+     
+        <input type="text" id="studentName" placeholder="Enter student name">
+        <button id="addBtn">Add</button>
+
+        <ul id="studentList"></ul>
+    </div>
+
+    <script>
+        $(document).ready(function(){
+
+            $("#addBtn").click(function(){
+                var name = $("#studentName").val().trim();
+                if(name !== ""){
+                    $("#studentList").append('<li>'+name+' <button class="delete-btn">Delete</button></li>');
+                    $("#studentName").val("");
+                }
+            });
+
+            $("#studentList").on("click", ".delete-btn", function(){
+                $(this).parent().remove();
+            });
+
+            $("#search").keyup(function(){
+                var searchText = $(this).val().toLowerCase();
+                $("#studentList li").each(function(){
+                    var itemText = $(this).text().toLowerCase();
+                    if(itemText.includes(searchText)){
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                    
+                });
+            });
+
+        });
+    </script>
+</body>
+</html>
